@@ -114,7 +114,7 @@ db = firestore.client()
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
 def hello():
     return "hello world"
 
