@@ -141,7 +141,7 @@ def generate_speech():
 
     # Generate a unique file name
     file_name = str(generate_file_name()) + ".mp3"
-    temp_audio_path = os.path.join("audio/", file_name)  # Store temporarily in /tmp directory
+    temp_audio_path = os.path.join("./audio/", file_name)  # Store temporarily in /tmp directory
     # remote_path = "audio_files/"+file_name
     # Save the audio file temporarily
     tts.save(temp_audio_path)
