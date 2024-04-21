@@ -33,14 +33,17 @@ def generate_speech():
     if not codeLanguage:
         codeLanguage = "en"
     print(codeLanguage)
-    # if language == "Marathi":
-    #     codeLanguage = "mr"
-    # elif language == "Bengali":
-    #     codeLanguage = "bn"
-    # elif language == "Gujarati":
-    #     codeLanguage = "gu"
-    # elif language == "Telugu":
-    #     codeLanguage = "te"
+    printLang = ""
+    if codeLanguage == "mr":
+        printLang = "Marathi"
+    elif codeLanguage == "bn":
+        printLang = "Bengali"
+    elif codeLanguage == "gu":
+        printLang = "Gujarati"
+    elif codeLanguage == "te":
+        printLang = "Telugu"
+    else:
+        printLang = detect(text)
 
     tts = gTTS(text=text, lang=codeLanguage)
 
@@ -59,7 +62,7 @@ def generate_speech():
     doc_ref = db.collection('stories').add(data)
     doc_id = doc_ref[1].id  # Get the document ID from the returned tuple
     # Save audio to Firestore
-    db.collection('stories').document(doc_id).update({'audio': download_url})
+    db.collection('stories').document(doc_id).update({'audio': download_url, 'language':printLang})
     os.remove(temp_audio_path)
 
     return jsonify({'message': 'Data and audio saved successfully'})
