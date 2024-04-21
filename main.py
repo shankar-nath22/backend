@@ -24,21 +24,23 @@ def generate_speech():
     text = data.get('original_text', '')
     language = data.get('language', '')
 
-    detectedLangugage = detect(text)
+    # detectedLangugage = detect(text)
     if not language:
         language = detect(text)
-    if detectedLangugage != language:
-        language = detectedLangugage
-
-    codeLanguage = "en"
-    if language == "Marathi":
-        codeLanguage = "mr"
-    elif language == "Bengali":
-        codeLanguage = "bn"
-    elif language == "Gujarati":
-        codeLanguage = "gu"
-    elif language == "Telugu":
-        codeLanguage = "te"
+    # if detectedLangugage != language:
+    #     language = detectedLangugage
+    codeLanguage = language
+    if not codeLanguage:
+        codeLanguage = "en"
+    print(codeLanguage)
+    # if language == "Marathi":
+    #     codeLanguage = "mr"
+    # elif language == "Bengali":
+    #     codeLanguage = "bn"
+    # elif language == "Gujarati":
+    #     codeLanguage = "gu"
+    # elif language == "Telugu":
+    #     codeLanguage = "te"
 
     tts = gTTS(text=text, lang=codeLanguage)
 
